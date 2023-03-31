@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField,IntegerField
 from wtforms.validators import DataRequired, Email, Length
 
 
@@ -23,7 +23,13 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 
-class AddressForm(FlaskForm):
-    address = StringField("Address", validators=[
-                          DataRequired("Please enter address")])
-    submit = SubmitField("Search")
+class Recipt(FlaskForm):
+    name = StringField('Name', validators=[
+        DataRequired("Please enter your name")])
+    amount = IntegerField("Amount", validators=[DataRequired(
+        "Please enter Amount")])
+    address = StringField('Address',validators=[
+        DataRequired("Please Enter Address")])
+    submit = SubmitField('Generate')
+
+

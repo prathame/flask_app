@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Donation Receipt</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #333;
+        color: white;
+        padding: 1em;
+        text-align: center;
+      }
+      h1 {
+        margin: 0;
+      }
+      main {
+        border: 1px solid #333;
+        box-shadow: 2px 2px 5px #ccc;
+        padding: 1em;
+        max-width: 600px;
+        margin: 1em auto;
+      }
+      p {
+        margin: 0.5em 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>दान रसीद</h1>
+    </header>
+    <main>
+      <p>रसीद संख्या: {{invoice_number}}</p>
+      <p>प्रिय {{name}},</p>
+      <p>पता: {{address}}</p>
+      <p>आपके {{price}} के दान के लिए धन्यवाद। {{date}} को आपके दान के कारण हमारी संगठन के मिशन पर एक गहरी प्रभाव होगा।</p>
+      <p>शुभकामनाएं,</p>
+      <p>गायत्री चेतना केंद्र औरंगाबाद महाराष्ट्र</p>
+    </main>
+  </body>
+</html>

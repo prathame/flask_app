@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from models import db, User
 from forms import SignupForm, LoginForm, Recipt
+from jinja2 import Environment, FileSystemLoader
+from datetime import datetime
+from weasyprint import HTML
+
 
 app = Flask(__name__)
 
@@ -73,6 +77,31 @@ def home():
   if 'email' not in session:
     return redirect(url_for('login'))
   else:
+    # Load the HTML template from file
+    env = Environment(loader=FileSystemLoader('C:\\Users\\hp\\flask_app\\templates'))
+    template = env.get_template('invoice.html')
+
+    # Define variables to pass to the template
+    variables = {
+      'name': form.name.data,
+      'address': form.address.data,
+      'price': form.amount.data,
+      'date': datetime.now()
+      }
+    html = template.render(variables)
+    
+    pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
+
+    # set options for pdf generation
+
+    # specify input and output file paths
+    input_string = html
+    print(html)
+    output_file = 'output.pdf'
+
+    # generate the pdf from the html file
+    HTML(html).write_pdf(output_file)
+    print('PDF file generated successfully.')
     return render_template('home.html',form=form)
 
 

@@ -1,22 +1,22 @@
 import pdfkit
 
-import tempfile
+# specify the path of wkhtmltopdf executable
+pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
 
-# Generate the HTML receipt
-html = '''
-<html>
-<head>
-  <title>Receipt</title>
-</head>
-<body>
-  <h1>Receipt</h1>
-  <p>Date: {date}</p>
-  <p>Amount: ${amount:.2f}</p>
-  <p>Transaction ID: {transaction_id}</p>
-</body>
-</html>
-'''.format(date='2022-04-01', amount=123.45, transaction_id='1234567890')
+# set options for pdf generation
+options = {
+    'page-size': 'Letter',
+    'margin-top': '0mm',
+    'margin-right': '0mm',
+    'margin-bottom': '0mm',
+    'margin-left': '0mm'
+}
 
-# Convert the HTML to PDF
-pdf_file = tempfile.NamedTemporaryFile(suffix='.pdf')
-pdfkit.from_string(html, pdf_file.name)
+# specify input and output file paths
+input_file = 'input.html'
+output_file = 'output.pdf'
+
+# generate the pdf from the html file
+pdfkit.from_file(input_file, output_file, options=options)
+
+print('PDF file generated successfully.')
